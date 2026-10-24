@@ -1,5 +1,6 @@
 # SauceDemo Playwright Tests
 
+[![Playwright tests](https://github.com/pau-corredor/saucedemo-playwright-tests/actions/workflows/tests.yml/badge.svg)](https://github.com/pau-corredor/saucedemo-playwright-tests/actions/workflows/tests.yml)
 Pruebas automatizadas de interfaz sobre [SauceDemo](https://www.saucedemo.com), una tienda en línea de demostración, hechas con Playwright, Python y pytest.
 
 Este proyecto automatiza los 17 casos de prueba manuales que diseñé en [saucedemo-qa-testing](https://github.com/pau-corredor/saucedemo-qa-testing).
@@ -36,9 +37,9 @@ pytest --headed --slowmo 500
 - `requirements.txt`: dependencias del proyecto
 
 ## Estado
-En progreso. Próximos pasos:
-- Reorganizar el código con Page Object Model (POM)
-- Correr las pruebas automáticamente con GitHub Actions
+- ✅ 17 casos automatizados
+- ✅ Pruebas corriendo automáticamente con GitHub Actions
+- ⏳ En progreso: reorganizar el código con Page Object Model (POM)
 
 ## Autora
 Paula, Bogotá, Colombia.
