@@ -57,7 +57,8 @@ def test_el_precio_de_un_producto_es_el_mismo_en_la_lista_el_detalle_y_el_carrit
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     precio_lista = page.locator('[data-test="inventory-item-price"]').first.inner_text()
-    page.locator ('[data-test="inventory-item-name"]').first.click()
+    page.locator('[data-test="inventory-item-name"]').first.click()
+    expect(page).to_have_url("https://www.saucedemo.com/inventory-item.html?id=4")
     expect(page.locator('[data-test="inventory-item-price"]')).to_have_text(precio_lista)
     page.locator('[data-test="add-to-cart"]').click()
     page.locator('[data-test="shopping-cart-link"]').click()
@@ -114,7 +115,7 @@ def test_quitar_un_product_desde_el_carrito(page: Page):
     expect(page.locator('[data-test="inventory-item-name"]')).to_have_count(0)
     expect(page.locator('[data-test="shopping-cart-badge"]')).to_have_count(0)
 
-def test_Checkout_con_datos_validos(page: Page):
+def test_checkout_con_datos_validos(page: Page):
     # 1. TC-14
     page.goto("https://www.saucedemo.com/")
     page.locator("#user-name").fill("standard_user")
@@ -131,7 +132,7 @@ def test_Checkout_con_datos_validos(page: Page):
     page.locator('[data-test="continue"]').click()
     expect(page).to_have_url("https://www.saucedemo.com/checkout-step-two.html")
 
-def test_Checkout_con_el_apellido_vacío(page: Page):
+def test_Checkout_con_el_apellido_vacio(page: Page):
     # 1. TC-15
     page.goto("https://www.saucedemo.com/")
     page.locator("#user-name").fill("standard_user")
@@ -149,7 +150,7 @@ def test_Checkout_con_el_apellido_vacío(page: Page):
     expect(page).to_have_url("https://www.saucedemo.com/checkout-step-one.html")
     expect(page.locator('[data-test="error"]')).to_have_text("Error: Last Name is required")
 
-def test_completar_la_compra_con_el_boton_Finish(page: Page):
+def test_completar_la_compra_con_el_boton_finish(page: Page):
     # 1. TC-16
     page.goto("https://www.saucedemo.com/")
     page.locator("#user-name").fill("standard_user")
