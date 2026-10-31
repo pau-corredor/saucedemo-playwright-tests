@@ -1,13 +1,13 @@
 from playwright.sync_api import Page, expect
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
-
+from config import USUARIO, CLAVE
 
 def test_cerrar_sesion(page: Page):
     # 1. Entrar con standard_user (igual que en test_login.py)
     login_page = LoginPage(page)
     login_page.goto()
-    login_page.login("standard_user", "secret_sauce")
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     # 2. Abrir el menú de la esquina superior izquierda

@@ -1,11 +1,11 @@
 from playwright.sync_api import Page, expect
 from pages.login_page import LoginPage
-
+from config import USUARIO, CLAVE
 
 def test_login_valido(page: Page):
     login_page = LoginPage(page)
     login_page.goto()
-    login_page.login("standard_user", "secret_sauce")
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
 

@@ -1,11 +1,12 @@
 from playwright.sync_api import Page, expect
+from pages.login_page import LoginPage
+from config import USUARIO, CLAVE
 
 def test_checkout_con_datos_validos(page: Page):
     # 1. TC-14
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
@@ -19,10 +20,9 @@ def test_checkout_con_datos_validos(page: Page):
 
 def test_checkout_con_el_apellido_vacio(page: Page):
     # 1. TC-15
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
@@ -37,10 +37,9 @@ def test_checkout_con_el_apellido_vacio(page: Page):
 
 def test_completar_la_compra_con_el_boton_finish(page: Page):
     # 1. TC-16
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
@@ -55,10 +54,9 @@ def test_completar_la_compra_con_el_boton_finish(page: Page):
 
 def test_el_total_del_pedido_coincide_con_la_suma_de_los_productos(page: Page):
     # 1. TC-17
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()

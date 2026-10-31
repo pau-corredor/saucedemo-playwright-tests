@@ -1,12 +1,13 @@
 from playwright.sync_api import Page, expect
 import re
+from pages.login_page import LoginPage
+from config import USUARIO, CLAVE
 
 def test_ordenar_productos(page: Page):
     # 1. Entrar con standard_user
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     #2. Selecionar Name(Z to A)
@@ -38,10 +39,9 @@ def test_ordenar_productos(page: Page):
 
 def test_agregar_un_producto_al_carrito_desde_la_lista(page: Page):
     # 1. TC-08
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     page.locator("#add-to-cart-sauce-labs-backpack").click()
@@ -52,10 +52,9 @@ def test_agregar_un_producto_al_carrito_desde_la_lista(page: Page):
 
 def test_las_imagenes_de_los_productos_son_las_correctas(page: Page):
     # 1. TC-09
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     expect(page.locator('[data-test="inventory-item-sauce-labs-backpack-img"]')).to_be_visible()
@@ -85,10 +84,9 @@ def test_las_imagenes_de_los_productos_son_las_correctas(page: Page):
 
 def test_el_precio_de_un_producto_es_el_mismo_en_la_lista_el_detalle_y_el_carrito(page: Page):
     # 1. TC-10
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     precio_lista = page.locator('[data-test="inventory-item-price"]').first.inner_text()
@@ -102,10 +100,9 @@ def test_el_precio_de_un_producto_es_el_mismo_en_la_lista_el_detalle_y_el_carrit
 
 def test_quitar_un_producto_desde_la_lista_y_desde_el_detalle(page: Page):
     # 1. TC-11
-    page.goto("https://www.saucedemo.com/")
-    page.locator("#user-name").fill("standard_user")
-    page.locator("#password").fill("secret_sauce")
-    page.locator("#login-button").click()
+    login_page = LoginPage(page)
+    login_page.goto()
+    login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
     page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
