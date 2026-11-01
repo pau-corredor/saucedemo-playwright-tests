@@ -1,6 +1,9 @@
 # SauceDemo Playwright Tests
 
 [![Playwright tests](https://github.com/pau-corredor/saucedemo-playwright-tests/actions/workflows/tests.yml/badge.svg)](https://github.com/pau-corredor/saucedemo-playwright-tests/actions/workflows/tests.yml)
+
+📄 [Informe del proyecto](docs/informe-proyecto.md)
+
 Pruebas automatizadas de interfaz sobre [SauceDemo](https://www.saucedemo.com), una tienda en línea de demostración, hechas con Playwright, Python y pytest.
 
 Este proyecto automatiza los 17 casos de prueba manuales que diseñé en [saucedemo-qa-testing](https://github.com/pau-corredor/saucedemo-qa-testing).
