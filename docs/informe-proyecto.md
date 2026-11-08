@@ -86,9 +86,9 @@ Las pruebas automatizadas cubren el comportamiento esperado con `standard_user`.
 - El hábito de verificar que mis pruebas realmente vigilan algo.
 - 
 ## 8. Checklist antes de publicar
-- [ ] README explica el proyecto sin necesidad de revisar todo el detalle
-- [ ] Archivos organizados, sin pruebas sueltas o versiones viejas
-- [ ] Sin credenciales ni datos sensibles en el repositorio
-- [ ] Link a la fuente original incluido y funcionando
-- [ ] Proyecto publicado y accesible (repo, sitio en vivo, o prototipo interactivo según corresponda)
-- [ ] Link compartido con tu coach
+- [x] README explica el proyecto sin necesidad de revisar todo el detalle
+- [x] Archivos organizados, sin pruebas sueltas o versiones viejas
+- [x] Sin credenciales ni datos sensibles en el repositorio
+- [x] Link a la fuente original incluido y funcionando
+- [x] Proyecto publicado y accesible (repo, sitio en vivo, o prototipo interactivo según corresponda)
+- [x] Link compartido con tu coach
