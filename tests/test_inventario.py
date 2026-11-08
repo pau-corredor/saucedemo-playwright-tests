@@ -2,6 +2,8 @@ from playwright.sync_api import Page, expect
 import re
 from pages.login_page import LoginPage
 from config import USUARIO, CLAVE
+from pages.inventory_page import InventoryPage
+
 
 def test_ordenar_productos(page: Page):
     # 1. Entrar con standard_user
@@ -9,31 +11,33 @@ def test_ordenar_productos(page: Page):
     login_page.goto()
     login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
+    inventory_page = InventoryPage(page)
 
-    #2. Selecionar Name(Z to A)
 
-    page.locator('[data-test="product-sort-container"]').select_option("za")
-    expect(page.locator('[data-test="inventory-item-name"]').first).to_have_text(
+    #2. Seleccionar Name(Z to A)
+
+    inventory_page.sort_by("za")
+    expect (inventory_page.item_names.first).to_have_text(
         "Test.allTheThings() T-Shirt (Red)"
     )
 
-    # 2. Selecionar Price(low to high)
+    # 2. Seleccionar Price(low to high)
 
-    page.locator('[data-test="product-sort-container"]').select_option("lohi")
-    expect(page.locator('[data-test="inventory-item-name"]').first).to_have_text(
+    inventory_page.sort_by("lohi")
+    expect(inventory_page.item_names.first).to_have_text(
         "Sauce Labs Onesie"
     )
 
-    # 2. Selecionar Price (high to low)
+    # 2. Seleccionar Price (high to low)
 
-    page.locator('[data-test="product-sort-container"]').select_option("hilo")
-    expect(page.locator('[data-test="inventory-item-name"]').first).to_have_text(
+    inventory_page.sort_by("hilo")
+    expect(inventory_page.item_names.first).to_have_text(
         "Sauce Labs Fleece Jacket"
     )
-    # 3. Selecionar Name (A to Z)
+    # 3. Seleccionar Name (A to Z)
 
-    page.locator('[data-test="product-sort-container"]').select_option("az")
-    expect(page.locator('[data-test="inventory-item-name"]').first).to_have_text(
+    inventory_page.sort_by("az")
+    expect(inventory_page.item_names.first).to_have_text(
         "Sauce Labs Backpack"
     )
 
@@ -44,11 +48,12 @@ def test_agregar_un_producto_al_carrito_desde_la_lista(page: Page):
     login_page.login(USUARIO, CLAVE)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
-    page.locator("#add-to-cart-sauce-labs-backpack").click()
-    page.locator("#add-to-cart-sauce-labs-bike-light").click()
+    inventory_page = InventoryPage(page)
+    inventory_page.add_backpack()
+    inventory_page.add_bike_light()
 
     expect(page.locator('[data-test="remove-sauce-labs-backpack"]')).to_have_text("Remove")
-    expect(page.locator('[data-test="shopping-cart-badge"]')).to_have_text("2")
+    expect(inventory_page.cart_badge).to_have_text("2")
 
 def test_las_imagenes_de_los_productos_son_las_correctas(page: Page):
     # 1. TC-09
