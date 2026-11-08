@@ -36,7 +36,7 @@ Automatizar los 17 casos de prueba manuales de una tienda en línea (login, inve
 - Automaticé los 17 casos que diseñé antes de forma manual ([saucedemo-qa-testing](https://github.com/pau-corredor/saucedemo-qa-testing)), organizados en un archivo por módulo.
 - Usé localizadores estables (`data-test` o `id`) en vez de clases de estilo, que cambian con más frecuencia.
 - Cada verificación comprueba algo concreto: textos de error, direcciones, que un elemento sea visible, el atributo `src` de las imágenes y que el contador del carrito suba o desaparezca.
-- Apliqué el Page Object Model de forma parcial: `LoginPage` para el login e `InventoryPage` para cerrar sesión, y un archivo `config.py` con el usuario y la contraseña, para cambiarlos en un solo lugar.
+- Apliqué el Page Object Model en el login, el inventario y el carrito: `LoginPage`, `InventoryPage` (cerrar sesión, agregar productos, ordenar y abrir el carrito) y `CartPage`. Además, un archivo `config.py` con el usuario y la contraseña, para cambiarlos en un solo lugar. El checkout y algunas pruebas del inventario todavía usan localizadores directos y quedan como próximo paso.
 - Al correr las pruebas en GitHub Actions, una falló por un tema de tiempos entre pantallas. La corregí agregando una espera al elemento correcto.
 
 **Criterios de aceptación**
@@ -75,7 +75,7 @@ Las pruebas automatizadas cubren el comportamiento esperado con `standard_user`.
 - A usar el Page Object Model y un archivo de configuración para no repetir código y cambiar los datos en un solo lugar.
 
 **Qué mejoraría con más tiempo**
-- Completar el Page Object Model con las páginas del inventario, el carrito y el checkout.
+- Completar el Page Object Model con la página del checkout y las pruebas del inventario que faltan.
 - Hacer que el inicio de sesión se ejecute solo antes de cada prueba, con una fixture de pytest.
 - Automatizar los otros usuarios de prueba y marcar como fallas esperadas los defectos ya documentados.
 - Generar un reporte HTML con capturas de los fallos y correr las pruebas en más navegadores.
